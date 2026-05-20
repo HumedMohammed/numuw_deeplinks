@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deeplinks</title>
+    <style>
+      :root {
+        --bg: #f7f8f2;
+        --card: #ffffff;
+        --text: #182015;
+        --muted: #5f6b58;
+        --accent: #0f766e;
+        --border: #d9dfd5;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        background: radial-gradient(
+          circle at top right,
+          #e7efe2,
+          var(--bg) 55%
+        );
+        color: var(--text);
+      }
+
+      main {
+        width: min(960px, 92vw);
+        margin: 48px auto;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        letter-spacing: 0.4px;
+      }
+
+      p {
+        color: var(--muted);
+        margin: 0 0 24px;
+      }
+
+      .list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .item {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 16px;
+      }
+
+      .item h2 {
+        margin: 0 0 6px;
+        font-size: 1.05rem;
+      }
+
+      .item a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        word-break: break-all;
+      }
+
+      .item a:hover {
+        text-decoration: underline;
+      }
+
+      .empty {
+        background: #fff;
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        padding: 18px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>My Deeplinks</h1>
+      <p>Add or edit items in <strong>util/index.js</strong>.</p>
+      <section id="list" class="list" aria-live="polite"></section>
+    </main>
+
+    <script type="module">
+      import { DEEPLINKS } from "./util/index.js";
+
+      const listEl = document.getElementById("list");
+
+      if (!Array.isArray(DEEPLINKS) || DEEPLINKS.length === 0) {
+        listEl.innerHTML =
+          '<div class="empty">No deeplinks configured yet.</div>';
+      } else {
+        listEl.innerHTML = DEEPLINKS.map((link) => {
+          const title = link.title || "Untitled";
+          const url = link.url || "#";
+          const description = link.description
+            ? `<p>${link.description}</p>`
+            : "";
+
+          return `
+            <article class="item">
+              <h2>${title}</h2>
+              <a href="${url}">${url}</a>
+              ${description}
+            </article>
+          `;
+        }).join("");
+      }
+    </script>
+  </body>
+</html>
