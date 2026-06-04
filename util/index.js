@@ -25,4 +25,14 @@ export const DEEPLINKS = [
     url: "https://numuw.go.link/m72jP",
     description: "Open menu",
   },
+  {
+    title: "Session Detail (NumuwLink)",
+    url: "https://numuw.com/deeplink?route=sessions&id=55",
+    description: "Open session detail with id 55",
+  },
+  {
+    title: "Plan Billing (NumuwLink)",
+    url: "https://numuw.com/deeplink?route=plan_billing",
+    description: "Open plan billing screen",
+  },
 ];
