@@ -35,4 +35,9 @@ export const DEEPLINKS = [
     url: "https://numuw.com/deeplink?route=plan_billing",
     description: "Open plan billing screen",
   },
+  {
+    title: "Home (NumuwLink)",
+    url: "https://numuw.com/deeplink",
+    description: "Open home screen",
+  },
 ];
